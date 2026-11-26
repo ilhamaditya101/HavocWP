@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.*;
 import org.bukkit.event.inventory.*;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerItemDamageEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -29,6 +30,7 @@ import java.util.*;
 public final class CustomWeaponPlugin extends JavaPlugin implements Listener, CommandExecutor, TabCompleter {
     private final Map<String, Weapon> weapons = new LinkedHashMap<>();
     private NamespacedKey weaponKey;
+    private NamespacedKey durabilityKey;
     private HttpServer packServer;
     private byte[] packBytes;
     private String packHash;
@@ -44,6 +46,7 @@ public final class CustomWeaponPlugin extends JavaPlugin implements Listener, Co
     @Override public void onEnable() {
         saveDefaultConfig();
         weaponKey = new NamespacedKey(this, "weapon_id");
+        durabilityKey = new NamespacedKey(this, "custom_max_durability");
         loadWeapons();
         getServer().getPluginManager().registerEvents(this, this);
         Objects.requireNonNull(getCommand("ct")).setExecutor(this);
@@ -107,6 +110,25 @@ public final class CustomWeaponPlugin extends JavaPlugin implements Listener, Co
         } catch (Exception e) { getLogger().severe("Resource pack server failed: " + e.getMessage()); }
     }
 
+    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    public void onCustomWeaponDamage(PlayerItemDamageEvent event) {
+        ItemStack item = event.getItem();
+        if (item == null || !item.hasItemMeta()) return;
+        ItemMeta meta = item.getItemMeta();
+        Integer maxDurability = meta.getPersistentDataContainer().get(durabilityKey, PersistentDataType.INTEGER);
+        if (maxDurability == null || !(meta instanceof Damageable damageable)) return;
+
+        // Handle durability ourselves because ItemMeta#setMaxDamage is unavailable in Paper 1.21.1.
+        event.setCancelled(true);
+        int nextDamage = damageable.getDamage() + event.getDamage();
+        if (nextDamage >= maxDurability) {
+            item.setAmount(0);
+            return;
+        }
+        damageable.setDamage(nextDamage);
+        item.setItemMeta(meta);
+    }
+
     @EventHandler public void onJoin(PlayerJoinEvent event) {
         if (!getConfig().getBoolean("resource-pack.enabled", true)) return;
         String url = getConfig().getString("resource-pack.public-url", "");
@@ -127,8 +149,9 @@ public final class CustomWeaponPlugin extends JavaPlugin implements Listener, Co
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(color(w.name));
         meta.setCustomModelData(w.cmd);
-        meta.setMaxDamage(Math.max(1, w.durability));
         meta.setUnbreakable(false);
+        meta.getPersistentDataContainer().set(durabilityKey, PersistentDataType.INTEGER, Math.max(1, w.durability));
+        if (meta instanceof Damageable damageable) damageable.setDamage(0);
         meta.getPersistentDataContainer().set(weaponKey, PersistentDataType.STRING, w.id);
         meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE,
                 new AttributeModifier(new NamespacedKey(this, w.id+"_damage"), w.damage - baseDamage(w.base),
