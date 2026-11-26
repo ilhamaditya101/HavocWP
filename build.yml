@@ -1,0 +1,23 @@
+name: Build CustomWeapon
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+      - name: Build plugin
+        run: mvn -B -U clean package
+      - name: Upload plugin jar
+        uses: actions/upload-artifact@v4
+        with:
+          name: CustomWeapon-Paper-1.21.1
+          path: target/CustomWeapon-1.0.0.jar

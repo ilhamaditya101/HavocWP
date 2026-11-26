@@ -1,0 +1,15 @@
+name: CustomWeapon
+version: 1.0.0
+main: com.havoc.customweapon.CustomWeaponPlugin
+api-version: '1.21'
+author: Havoc
+description: Custom weapon crafting, permissions, stats and resource pack delivery.
+commands:
+  ct:
+    description: CustomWeapon main command
+    usage: /ct
+permissions:
+  customweapon.admin:
+    default: op
+  customweapon.use:
+    default: true

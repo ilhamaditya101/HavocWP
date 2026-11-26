@@ -1,0 +1,147 @@
+# CustomWeapon - Paper 1.21.1
+resource-pack:
+  enabled: true
+  # Ganti dengan domain/IP publik server + port plugin. Contoh: http://play.example.com:8765/pack.zip
+  public-url: "http://CHANGE-ME:8765/pack.zip"
+  host: "0.0.0.0"
+  port: 8765
+  required: false
+
+# Crafting: 9 slot dari kiri ke kanan, baris per baris.
+# AIR = slot kosong. Material harus nama Material Bukkit.
+weapons:
+  mega_wukong:
+    name: "&6Mega Wukong"
+    base: IRON_SWORD
+    custom-model-data: 10001
+    permission: "customweapon.craft.mega_wukong"
+    damage: 12.0
+    attack-speed: 1.6
+    max-durability: 1800
+    recipe: [AIR, AIR, BLAZE_ROD, AIR, GOLDEN_SWORD, AIR, AIR, AIR, AIR]
+  corrupted_pendragon:
+    name: "&cCorrupted Pendragon Sword"
+    base: IRON_SWORD
+    custom-model-data: 10002
+    permission: "customweapon.craft.corrupted_pendragon"
+    damage: 13.0
+    attack-speed: 1.4
+    max-durability: 2200
+    recipe: [AIR, NETHER_STAR, AIR, AIR, NETHERITE_SWORD, AIR, AIR, BLAZE_ROD, AIR]
+  gregiro_katana:
+    name: "&bGregiro Katana"
+    base: IRON_SWORD
+    custom-model-data: 10003
+    permission: "customweapon.craft.gregiro_katana"
+    damage: 10.0
+    attack-speed: 2.2
+    max-durability: 1400
+    recipe: [AIR, AIR, IRON_INGOT, AIR, DIAMOND_SWORD, AIR, AIR, STICK, AIR]
+  oni_curse_sword:
+    name: "&5Oni Curse Sword"
+    base: IRON_SWORD
+    custom-model-data: 10004
+    permission: "customweapon.craft.oni_curse_sword"
+    damage: 11.0
+    attack-speed: 1.7
+    max-durability: 1600
+    recipe: [AIR, WITHER_SKELETON_SKULL, AIR, AIR, NETHERITE_SWORD, AIR, AIR, BLAZE_ROD, AIR]
+  aoi_oni_katana:
+    name: "&3Aoi Oni Katana"
+    base: IRON_SWORD
+    custom-model-data: 10005
+    permission: "customweapon.craft.aoi_oni_katana"
+    damage: 11.0
+    attack-speed: 2.0
+    max-durability: 1500
+    recipe: [AIR, PRISMARINE_SHARD, AIR, AIR, DIAMOND_SWORD, AIR, AIR, STICK, AIR]
+  flame_greatsword:
+    name: "&cFlame Greatsword"
+    base: IRON_SWORD
+    custom-model-data: 10006
+    permission: "customweapon.craft.flame_greatsword"
+    damage: 14.0
+    attack-speed: 1.2
+    max-durability: 2000
+    recipe: [BLAZE_POWDER, AIR, BLAZE_POWDER, AIR, DIAMOND_SWORD, AIR, AIR, BLAZE_ROD, AIR]
+  azure_feather_greatsword:
+    name: "&bAzure Feather Greatsword"
+    base: IRON_SWORD
+    custom-model-data: 10007
+    permission: "customweapon.craft.azure_feather_greatsword"
+    damage: 13.0
+    attack-speed: 1.3
+    max-durability: 1900
+    recipe: [AIR, PHANTOM_MEMBRANE, AIR, AIR, DIAMOND_SWORD, AIR, AIR, BLAZE_ROD, AIR]
+  red_lion_greatsword:
+    name: "&cRed Lion Greatsword"
+    base: IRON_SWORD
+    custom-model-data: 10008
+    permission: "customweapon.craft.red_lion_greatsword"
+    damage: 14.0
+    attack-speed: 1.2
+    max-durability: 2100
+    recipe: [AIR, RED_DYE, AIR, AIR, NETHERITE_SWORD, AIR, AIR, BLAZE_ROD, AIR]
+  shinoyomi_katana:
+    name: "&dShinoyomi Katana"
+    base: IRON_SWORD
+    custom-model-data: 10009
+    permission: "customweapon.craft.shinoyomi_katana"
+    damage: 12.0
+    attack-speed: 1.9
+    max-durability: 1700
+    recipe: [AIR, AMETHYST_SHARD, AIR, AIR, DIAMOND_SWORD, AIR, AIR, STICK, AIR]
+  espada_de_samael:
+    name: "&8Y Espada De Samael Sword"
+    base: IRON_SWORD
+    custom-model-data: 10010
+    permission: "customweapon.craft.espada_de_samael"
+    damage: 15.0
+    attack-speed: 1.1
+    max-durability: 2300
+    recipe: [AIR, SOUL_SAND, AIR, AIR, NETHERITE_SWORD, AIR, AIR, BLAZE_ROD, AIR]
+  oni_axe:
+    name: "&6Oni Axe"
+    base: IRON_AXE
+    custom-model-data: 10101
+    permission: "customweapon.craft.oni_axe"
+    damage: 12.0
+    attack-speed: 1.0
+    max-durability: 1800
+    recipe: [IRON_INGOT, IRON_INGOT, AIR, IRON_INGOT, DIAMOND_AXE, AIR, AIR, STICK, AIR]
+  oni_hoe:
+    name: "&6Oni Hoe"
+    base: IRON_HOE
+    custom-model-data: 10102
+    permission: "customweapon.craft.oni_hoe"
+    damage: 7.0
+    attack-speed: 2.0
+    max-durability: 1500
+    recipe: [AIR, GOLD_INGOT, AIR, AIR, DIAMOND_HOE, AIR, AIR, STICK, AIR]
+  oni_pickaxe:
+    name: "&6Oni Pickaxe"
+    base: IRON_PICKAXE
+    custom-model-data: 10103
+    permission: "customweapon.craft.oni_pickaxe"
+    damage: 8.0
+    attack-speed: 1.2
+    max-durability: 1900
+    recipe: [IRON_INGOT, DIAMOND, IRON_INGOT, AIR, DIAMOND_PICKAXE, AIR, AIR, STICK, AIR]
+  oni_shovel:
+    name: "&6Oni Shovel"
+    base: IRON_SHOVEL
+    custom-model-data: 10104
+    permission: "customweapon.craft.oni_shovel"
+    damage: 7.0
+    attack-speed: 1.1
+    max-durability: 1500
+    recipe: [AIR, IRON_INGOT, AIR, AIR, DIAMOND_SHOVEL, AIR, AIR, STICK, AIR]
+  oni_spear:
+    name: "&eOni Spear"
+    base: IRON_SWORD
+    custom-model-data: 10105
+    permission: "customweapon.craft.oni_spear"
+    damage: 13.0
+    attack-speed: 1.4
+    max-durability: 1800
+    recipe: [AIR, TRIDENT, AIR, AIR, DIAMOND, AIR, AIR, BLAZE_ROD, AIR]
